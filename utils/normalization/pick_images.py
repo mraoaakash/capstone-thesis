@@ -39,6 +39,7 @@ def move_images(df,out_dir):
     """
     Moves the images from the dataframe to the output directory.
     """
+    os.makedirs(out_dir, exist_ok=True)
     for index, row in df.iterrows():
         shutil.copy(row['image_path'], out_dir)
     
