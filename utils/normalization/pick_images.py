@@ -39,6 +39,7 @@ def move_images(df,out_dir):
     """
     Moves the images from the dataframe to the output directory.
     """
+    out_dir = os.path.join(out_dir, 'picked_images')
     os.makedirs(out_dir, exist_ok=True)
     for index, row in df.iterrows():
         shutil.copy(row['image_path'], out_dir)
@@ -51,6 +52,7 @@ def plot_image_grid(df, n, i, seed, out_dir):
     """
     Plots a grid of images.
     """
+    out_dir = os.path.join(out_dir, 'image_grid')
 
     for index, row in df.iterrows():
         if index == i:
