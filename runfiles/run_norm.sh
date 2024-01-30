@@ -14,3 +14,5 @@ PATHFROMDIR=$BASEPATH/capstone-thesis/utils/normalization/pick_images.py
 
 echo "Running normalization script"
 echo $PATHFROMDIR
+
+python $PATHFROMDIR
