@@ -52,17 +52,14 @@ def plot_image_grid(df, n, i, seed, out_dir):
     Plots a grid of images.
     """
 
-    fig, ax = plt.subplots(nrows=n//i, ncols=i, figsize=(10,10))
-    np.random.seed(seed)
     for index, row in df.iterrows():
-        image = plt.imread(row['image_path'])
-        ax[index//i, index%i].imshow(image)
-        ax[index//i, index%i].set_title(row['image_name'])
-        ax[index//i, index%i].axis('off')
-
-    plt.tight_layout()
-    plt.savefig(os.path.join(out_dir, 'image_grid.png'))
-
+        if index == i:
+            image = plt.imread(row['image_path'])
+            plt.imshow(image)
+            plt.axis('off')
+            plt.savefig(os.path.join(out_dir, 'picked_image.png'), bbox_inches='tight')
+            # plt.show()
+            break
 
 if __name__ == '__main__':
     argparse = argparse.ArgumentParser()
