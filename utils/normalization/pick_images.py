@@ -82,6 +82,7 @@ def plot_image_grid(df, n, i, seed, out_dir):
     for index, row in df.iterrows():
         if index == i:
             image = plt.imread(row['image_path'])
+            print(f"{row['image_name']} => {row['image_path']}")
             plt.imshow(image)
             plt.axis('off')
             plt.savefig(os.path.join(out_dir, 'picked_image.png'), bbox_inches='tight')
