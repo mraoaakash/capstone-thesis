@@ -13,6 +13,10 @@ def image_df(dir):
     """
     Creates a dataframe with the image names and their corresponding labels.
     """
+    print('------------------------------------------------------------------------------------')
+    print('------------------------------ Generating Data Frame -------------------------------')
+    print('------------------------------------------------------------------------------------')
+
     image_list = os.listdir(dir)
     image_list.sort()
     try:
@@ -24,21 +28,33 @@ def image_df(dir):
 
     image_df = pd.DataFrame({'image_path': image_list_path, 'image_name': image_list})
 
+    print('------------------------------- Generated Data Frame -------------------------------')
+    print('------------------------------------------------------------------------------------')
+
     return image_df
 
 def pick_images(df, n, seed):
     """
     Randomly picks n images from the dataframe.
     """
+    print('------------------------------------------------------------------------------------')
+    print('--------------------------- Picking Random Images ----------------------------------')
+    print('------------------------------------------------------------------------------------')
+
     np.random.seed(seed)
     df = df.sample(n=n)
 
+    print('--------------------------- Picked Random Images -----------------------------------')
+    print('------------------------------------------------------------------------------------')
     return df
 
 def move_images(df,out_dir):
     """
     Moves the images from the dataframe to the output directory.
     """
+    print('------------------------------------------------------------------------------------')
+    print('--------------------------- Moving Picked Images -----------------------------------')
+    print('------------------------------------------------------------------------------------')
     out_dir = os.path.join(out_dir, 'picked_images')
     os.makedirs(out_dir, exist_ok=True)
     for index, row in df.iterrows():
@@ -46,12 +62,20 @@ def move_images(df,out_dir):
     
     new_paths = [os.path.join(out_dir, image) for image in df['image_name']]
     new_df = pd.DataFrame({'image_path': new_paths, 'image_name': df['image_name']})
+    print('--------------------------- Moved Picked Images ------------------------------------')
+    print('------------------------------------------------------------------------------------')
+
     return new_df
 
 def plot_image_grid(df, n, i, seed, out_dir):
     """
     Plots a grid of images.
     """
+
+    print('------------------------------------------------------------------------------------')
+    print('--------------------------- Plotting Image Grid ------------------------------------')
+    print('------------------------------------------------------------------------------------')
+
     out_dir = os.path.join(out_dir, 'image_grid')
     os.makedirs(out_dir, exist_ok=True)
 
@@ -63,6 +87,9 @@ def plot_image_grid(df, n, i, seed, out_dir):
             plt.savefig(os.path.join(out_dir, 'picked_image.png'), bbox_inches='tight')
             # plt.show()
             break
+    
+    print('--------------------------- Plotted Image Grid -------------------------------------')
+    print('------------------------------------------------------------------------------------')
 
 if __name__ == '__main__':
     argparse = argparse.ArgumentParser()
