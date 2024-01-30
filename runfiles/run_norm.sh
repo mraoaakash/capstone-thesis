@@ -18,7 +18,7 @@ PATHFROMDIR=$BASEPATH/capstone-thesis/utils/normalization/pick_images.py
 echo "Running normalization script"
 echo $PATHFROMDIR
 
-python $PATHFRO \
+python $PATHFRO/pick_images.py \
     --input_dir $BASEPATH/capstone-thesis/data/NuclsEvalSet/rgb \
     --output_dir $BASEPATH/capstone-thesis/data/norm_images/ \
     --n 5 \
