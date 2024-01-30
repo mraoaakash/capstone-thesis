@@ -5,6 +5,7 @@ import shutil
 import matplotlib.pyplot as plt
 from matplotlib import rc 
 import argparse
+import cv2
 
 
 rc('font',**{'family':'serif','serif':['Times New Roman']})
@@ -80,14 +81,12 @@ def plot_image_grid(df, n, i, seed, out_dir):
     os.makedirs(out_dir, exist_ok=True)
 
     for index, row in df.iterrows():
-        if index == i:
-            image = plt.imread(row['image_path'])
-            print(f"{row['image_name']} => {row['image_path']}")
-            plt.imshow(image)
-            plt.axis('off')
-            plt.savefig(os.path.join(out_dir, 'picked_image.png'), bbox_inches='tight')
-            # plt.show()
-            break
+        image = cv2.imread(row['image_path'])
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        plt.imshow(image)
+        plt.axis('off')
+        plt.savefig(os.path.join(out_dir, f'image_grid_{index}.png'), bbox_inches='tight', pad_inches=0)
+        plt.close()
     
     print('Plotted Image Grid')
     print('------------------')
