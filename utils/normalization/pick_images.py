@@ -86,8 +86,8 @@ def plot_image_grid(df, n, i, seed, out_dir):
 
     fig, ax = plt.subplots(int(sqrt(n)), int(sqrt(n)), figsize=(i*3, i*3))
     np.random.seed(seed)
-    for i in range(sqrt(n)):
-        for j in range(sqrt(n)):
+    for i in range(int(sqrt(n))):
+        for j in range(int(sqrt(n))):
             index = np.random.randint(0, n)
             img = cv2.imread(df_cpy['image_path'][index])
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
