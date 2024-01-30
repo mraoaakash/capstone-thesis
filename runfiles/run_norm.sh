@@ -3,7 +3,7 @@
 #PBS -o COL_NORM.log
 #PBS -e COL_NORM.log
 #PBS -l ncpus=5
-#PBS -q cpu
+#PBS -q gpu
 
 eval "$(conda shell.bash hook)"
 conda activate COL_NORM
