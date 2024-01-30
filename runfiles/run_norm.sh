@@ -10,7 +10,7 @@ conda activate COL_NORM
 
 BASEPATH=/home/aakash.rao_asp24
 
-PATHFROMDIR={$BASEPATH}/utils/normalization/pick_images.py
+PATHFROMDIR=$BASEPATH/capstone-thesis/utils/normalization/pick_images.py
 
 echo "Running normalization script"
-echo "{$PATHFROMDIR}"
+echo $PATHFROMDIR
