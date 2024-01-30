@@ -4,6 +4,7 @@ import numpy as np
 import shutil
 import matplotlib.pyplot as plt
 from matplotlib import rc 
+import argparse
 
 
 rc('font',**{'family':'serif','serif':['Times New Roman']})
@@ -60,3 +61,20 @@ def plot_image_grid(df, n, i, seed, out_dir):
             col.set_title(image['image_name'].values[0], fontsize=10)
     plt.tight_layout()
     plt.savefig(os.path.join(out_dir, 'image_grid.png'), dpi=300)
+
+
+
+if __name__ == '__main__':
+    argparse = argparse.ArgumentParser()
+    argparse.add_argument('--input_dir', type=str, default='data/processed_images')
+    argparse.add_argument('--output_dir', type=str, default='data/picked_images')
+    argparse.add_argument('--n', type=int, default=10)
+    argparse.add_argument('--i', type=int, default=5)
+    argparse.add_argument('--seed', type=int, default=42)
+    args = argparse.parse_args()
+
+    df = image_df(args.input_dir)
+    df = pick_images(df, args.n, args.seed)
+    df = move_images(df, args.output_dir)
+    plot_image_grid(df, args.n, args.i, args.seed, args.output_dir)
+    
