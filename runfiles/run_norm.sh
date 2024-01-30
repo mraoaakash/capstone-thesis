@@ -1,7 +1,7 @@
 #! /bin/bash
 #PBS -N COL_NORM
-#PBS -o COL_NORM.log
-#PBS -e COL_NORM.log
+#PBS -o COL_NORM_out.log
+#PBS -e COL_NORM_err.log
 #PBS -l ncpus=5
 #PBS -q gpu
 
