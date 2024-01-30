@@ -53,6 +53,7 @@ def plot_image_grid(df, n, i, seed, out_dir):
     Plots a grid of images.
     """
     out_dir = os.path.join(out_dir, 'image_grid')
+    os.makedirs(out_dir, exist_ok=True)
 
     for index, row in df.iterrows():
         if index == i:
