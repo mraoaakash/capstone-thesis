@@ -6,9 +6,10 @@
 #PBS -q gpu
 
 module load compiler/anaconda3
-source activate COL_NORM
 
-# conda activate COL_NORM
+
+conda init bash 
+conda activate COL_NORM
 
 BASEPATH=/home/aakash.rao_asp24
 
