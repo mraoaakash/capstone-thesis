@@ -84,7 +84,7 @@ def plot_image_grid(df, n, i, seed, out_dir):
     out_dir = os.path.join(out_dir, 'image_grid')
     os.makedirs(out_dir, exist_ok=True)
 
-    fig, ax = plt.subplots(sqrt(n), sqrt(n), figsize=(i*3, i*3))
+    fig, ax = plt.subplots(int(sqrt(n)), int(sqrt(n)), figsize=(i*3, i*3))
     np.random.seed(seed)
     for i in range(sqrt(n)):
         for j in range(sqrt(n)):
