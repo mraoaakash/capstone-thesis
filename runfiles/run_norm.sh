@@ -5,7 +5,8 @@
 #PBS -l ncpus=5
 #PBS -q gpu
 
-eval "$(conda shell.bash hook)"
+module load compiler/anaconda3
+
 conda activate COL_NORM
 
 BASEPATH=/home/aakash.rao_asp24
