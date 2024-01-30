@@ -8,7 +8,7 @@
 module load compiler/anaconda3
 
 
-conda init bash 
+conda init zsh 
 conda activate COL_NORM
 
 BASEPATH=/home/aakash.rao_asp24
