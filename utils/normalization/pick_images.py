@@ -77,4 +77,4 @@ if __name__ == '__main__':
     print(df.head())
     # df = pick_images(df, args.n, args.seed)
     # df = move_images(df, args.output_dir)
-    plot_image_grid(df, args.n, args.i, args.seed, args.output_dir)
+    # plot_image_grid(df, args.n, args.i, args.seed, args.output_dir)
