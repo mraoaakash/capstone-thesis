@@ -54,15 +54,14 @@ def plot_image_grid(df, n, i, seed, out_dir):
 
     fig, ax = plt.subplots(nrows=n//i, ncols=i, figsize=(10,10))
     np.random.seed(seed)
-    for row in ax:
-        for col in row:
-            image = df.sample(n=1)
-            col.imshow(plt.imread(image['image_path'].values[0]))
-            col.axis('off')
-            col.set_title(image['image_name'].values[0], fontsize=10)
-    plt.tight_layout()
-    plt.savefig(os.path.join(out_dir, 'image_grid.png'), dpi=300)
+    for index, row in df.iterrows():
+        image = plt.imread(row['image_path'])
+        ax[index//i, index%i].imshow(image)
+        ax[index//i, index%i].set_title(row['image_name'])
+        ax[index//i, index%i].axis('off')
 
+    plt.tight_layout()
+    plt.savefig(os.path.join(out_dir, 'image_grid.png'))
 
 
 if __name__ == '__main__':
@@ -78,4 +77,4 @@ if __name__ == '__main__':
     print(df.head())
     df = pick_images(df, args.n, args.seed)
     new_df = move_images(df, args.output_dir)
-    # plot_image_grid(df, args.n, args.i, args.seed, args.output_dir)
+    plot_image_grid(df, args.n, args.i, args.seed, args.output_dir)
