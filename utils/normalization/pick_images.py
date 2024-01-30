@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib import rc 
 import argparse
 import cv2
+from math import sqrt
 
 
 rc('font',**{'family':'serif','serif':['Times New Roman']})
@@ -72,6 +73,9 @@ def plot_image_grid(df, n, i, seed, out_dir):
     """
     Plots a grid of images.
     """
+    df_cpy = df.copy()
+    df_cpy.reset_index(inplace=True)
+
 
     print('-------------------')
     print('Plotting Image Grid')
@@ -80,16 +84,23 @@ def plot_image_grid(df, n, i, seed, out_dir):
     out_dir = os.path.join(out_dir, 'image_grid')
     os.makedirs(out_dir, exist_ok=True)
 
-    for index, row in df.iterrows():
-        image = cv2.imread(row['image_path'])
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        plt.imshow(image)
-        plt.axis('off')
-        plt.savefig(os.path.join(out_dir, f'image_grid_{index}.png'), bbox_inches='tight', pad_inches=0)
-        plt.close()
+    fig, ax = plt.subplots(sqrt(n), sqrt(n), figsize=(i*3, i*3))
+    np.random.seed(seed)
+    for i in range(sqrt(n)):
+        for j in range(sqrt(n)):
+            index = np.random.randint(0, n)
+            img = cv2.imread(df_cpy['image_path'][index])
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            ax[i,j].imshow(img)
+            ax[i,j].axis('off')
+            ax[i,j].set_title(df_cpy['image_name'][index])
     
-    print('Plotted Image Grid')
-    print('------------------')
+    plt.tight_layout()
+    plt.savefig(os.path.join(out_dir, 'image_grid.png'))
+
+
+def norm_func(df, method="reinhard"):
+    pass
 
 if __name__ == '__main__':
     argparse = argparse.ArgumentParser()
